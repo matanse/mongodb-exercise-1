@@ -1,4 +1,3 @@
-const { date } = require("joi");
 const mongoose = require("mongoose");
 
 mongoose
@@ -11,11 +10,12 @@ mongoose
 
 const courseSchema = new mongoose.Schema({
   name: String,
-  date: { type: date, default: Date.now },
+  date: { type: Date, default: Date.now },
   tags: [String],
   author: String,
   isPublished: Boolean,
   price: Number,
+  _id: String,
 });
 
 const Course = mongoose.model("Course", courseSchema);
@@ -38,23 +38,19 @@ async function run() {
 
 // run();
 
-async function updateCourse() {
-  const course = await Course.find({ name: "Angular Course" });
-  if (!course) {
-    console.log("course was not found!");
-    return;
-  }
-  console.log(course);
-  console.log(typeof course);
-  course[0].isPublished = true;
-  course[0].name = "brooo";
-  console.log(course);
+async function updateCourse(id) {
+  const course = await Course.findById(id);
+  // console.log(course);
+  // console.log(typeof course);
+  course.isPublished = false;
+  course.name = "brooo";
+  // console.log(course);
   // course.set({
   //   name: "blabla",
   //   author: "blibli",
   //   price: 100,
   // });
-  const results = await course.save();
-  console.log(results);
+  const result = await course.save();
+  console.log(result);
 }
-updateCourse();
+updateCourse("5a68fdc3615eda645bc6bdec");
