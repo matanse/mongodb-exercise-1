@@ -38,7 +38,7 @@ async function run() {
 
 // run();
 
-async function updateCourse(id) {
+async function fetchAndUpdateCourse(id) {
   const course = await Course.findById(id);
   // console.log(course);
   // console.log(typeof course);
