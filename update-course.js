@@ -54,3 +54,14 @@ async function updateCourse(id) {
   console.log(result);
 }
 fetchAndUpdateCourse("5a68fdc3615eda645bc6bdec");
+
+const updateCourse = async (id) => {
+  try {
+    await Course.updateOne({ _id: id }, { name: "hibijibi", author: "me" });
+  } catch (err) {
+    console.log("error:", err);
+    return;
+  }
+};
+
+updateCourse("5a68fdc3615eda645bc6bdec");
