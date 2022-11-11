@@ -53,4 +53,4 @@ async function updateCourse(id) {
   const result = await course.save();
   console.log(result);
 }
-updateCourse("5a68fdc3615eda645bc6bdec");
+fetchAndUpdateCourse("5a68fdc3615eda645bc6bdec");
